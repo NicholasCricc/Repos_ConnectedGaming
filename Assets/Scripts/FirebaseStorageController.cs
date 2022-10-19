@@ -9,22 +9,23 @@ using Firebase.Extensions;
 
 public class FirebaseStorageController : MonoBehaviour
 {
-    
+
     private FirebaseStorage _firebaseInstance;
     [SerializeField] private GameObject ThumbnailPrefab;
     private GameObject _thumbnailContainer;
+    public List<GameObject> instantiatedPrefabs;
     public enum DownloadType
     {
         Manifest, Thumbnail
     }
-    
+
     public static FirebaseStorageController Instance
     {
         get;
         private set;
     }
-    
-    
+
+
     private void Awake()
     {
         //Singleton Pattern
@@ -42,37 +43,42 @@ public class FirebaseStorageController : MonoBehaviour
 
     private void Start()
     {
+        instantiatedPrefabs = new List<GameObject>();
         _thumbnailContainer = GameObject.Find("Thumbnail_Container");
         //First download manifest.txt
-        DownloadFileAsync("gs://cg-02-6e2c8.appspot.com/manifest.txt",DownloadType.Manifest);
+        DownloadFileAsync("gs://connectedgaming-bcacd.appspot.com/Manifest.txt", DownloadType.Manifest);
         //Get the urls inside the manifest file
         //Download each url and display to the user
     }
 
-    public void DownloadFileAsync(string url, DownloadType filetype){
-        StorageReference storageRef =  _firebaseInstance.GetReferenceFromUrl(url);
-        
+    public void DownloadFileAsync(string url, DownloadType filetype)
+    {
+        StorageReference storageRef = _firebaseInstance.GetReferenceFromUrl(url);
+
         // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
         const long maxAllowedSize = 1 * 1024 * 1024;
         storageRef.GetBytesAsync(maxAllowedSize).ContinueWithOnMainThread(task => {
-            if (task.IsFaulted || task.IsCanceled) {
+            if (task.IsFaulted || task.IsCanceled)
+            {
                 Debug.LogException(task.Exception);
                 // Uh-oh, an error occurred!
             }
-            else {
+            else
+            {
                 Debug.Log($"{storageRef.Name} finished downloading!");
                 if (filetype == DownloadType.Manifest)
                 {
                     //Load manifest
                     StartCoroutine(LoadManifest(task.Result));
-                }else if (filetype == DownloadType.Thumbnail)
+                }
+                else if (filetype == DownloadType.Thumbnail)
                 {
                     //Load the image into Unity
                     StartCoroutine(LoadImage(task.Result));
                 }
             }
         });
-        
+
     }
 
     IEnumerator LoadManifest(byte[] byteArr)
@@ -94,12 +100,14 @@ public class FirebaseStorageController : MonoBehaviour
         imageTex.LoadImage(byteArr);
         //Instantiate a new prefab
         GameObject thumbnailPrefab =
-            Instantiate(ThumbnailPrefab, _thumbnailContainer.transform.position, 
-                Quaternion.identity,_thumbnailContainer.transform);
-        
+            Instantiate(ThumbnailPrefab, _thumbnailContainer.transform.position,
+                Quaternion.identity, _thumbnailContainer.transform);
+        thumbnailPrefab.name = "Thumnail_" + instantiatedPrefabs.Count;
         //Load the image to that prefab
         thumbnailPrefab.GetComponent<RawImage>().texture = imageTex;
+
+        instantiatedPrefabs.Add(thumbnailPrefab);
         yield return null;
     }
-    
+
 }

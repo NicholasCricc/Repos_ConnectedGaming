@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 1338171338}
   - component: {fileID: 1338171339}
   m_Layer: 5
-  m_Name: ThumbnailContainer
+  m_Name: Thumbnail_Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,8 +504,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 20, y: 20}
-  m_SizeDelta: {x: -914, y: -438}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -60, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338171339
 MonoBehaviour:
@@ -527,8 +527,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 200, y: 300}
-  m_Spacing: {x: 25, y: 25}
+  m_CellSize: {x: 400, y: 600}
+  m_Spacing: {x: 30, y: 30}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &2114622643
@@ -561,6 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThumbnailPrefab: {fileID: 566691426451133562, guid: aa40edcc0172a6f4c8f0287deca0c1b6, type: 3}
+  instantiatedPrefabs: []
 --- !u!4 &2114622645
 Transform:
   m_ObjectHideFlags: 0
