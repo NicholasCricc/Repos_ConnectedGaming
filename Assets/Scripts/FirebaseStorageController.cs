@@ -15,9 +15,10 @@ public class FirebaseStorageController : MonoBehaviour
     [SerializeField] private GameObject ThumbnailPrefab;
     private GameObject _thumbnailContainer;
     public List<GameObject> instantiatedPrefabs;
+    public List<AssetData> DownloadedAssetData;
     public enum DownloadType
     {
-        Manifest, Thumbnail
+        manifest, Thumbnail
     }
 
     public static FirebaseStorageController Instance
@@ -47,7 +48,7 @@ public class FirebaseStorageController : MonoBehaviour
         instantiatedPrefabs = new List<GameObject>();
         _thumbnailContainer = GameObject.Find("Thumbnail_Container");
         //First download manifest.txt
-        DownloadFileAsync("gs://connectedgaming-bcacd.appspot.com/manifest.xml", DownloadType.Manifest);
+        DownloadFileAsync("gs://connectedgaming-bcacd.appspot.com/manifest.xml", DownloadType.manifest);
         //Get the urls inside the manifest file
         //Download each url and display to the user
     }
@@ -67,7 +68,7 @@ public class FirebaseStorageController : MonoBehaviour
             else
             {
                 Debug.Log($"{storageRef.Name} finished downloading!");
-                if (filetype == DownloadType.Manifest)
+                if (filetype == DownloadType.manifest)
                 {
                     //Load manifest
                     StartCoroutine(LoadManifest(task.Result));
@@ -85,7 +86,13 @@ public class FirebaseStorageController : MonoBehaviour
     IEnumerator LoadManifest(byte[] byteArr)
     {
 
-        XDocument manifest = XDocument.Parse(System.Text.Encoding.UTF8.GetString(byteArr));
+        //XDocument manifest = XDocument.Parse(System.Text.Encoding.UTF8.GetString(byteArr));
+        //List<AssetData> assetData = new List<AssetData>();
+        //foreach (XElement xElement in manifest.Root.Elements())
+        //{
+            //string id = xElement.Element("id").Value;
+            //Debug.Log(xElement.Element("id").Value);
+        //}
         yield return null;
     }
 

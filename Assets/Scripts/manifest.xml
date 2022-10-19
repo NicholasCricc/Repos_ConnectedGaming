@@ -5,7 +5,7 @@
         <id>0</id>
         <name>Cave Horror</name>
         <img>
-            <url>gs://cg-02-6e2c8.appspot.com/Thumbnails/Image1.png</url>
+            <url>gs://connectedgaming-bcacd.appspot.com/Thumbnails/Image1.png</url>
         </img>
         <price>
             <value>1200</value>
@@ -24,7 +24,7 @@
         <id>1</id>
         <name>Miner's Boot</name>
         <img>
-            <url>gs://cg-02-6e2c8.appspot.com/Thumbnails/Image2.png</url>
+            <url>gs://connectedgaming-bcacd.appspot.com/Thumbnails/Image2.png</url>
         </img>
         <price>
             <value>1500</value>
