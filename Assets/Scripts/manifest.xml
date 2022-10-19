@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<assets>
+    <asset>
+        <id>0</id>
+        <name>Cave Horror</name>
+        <img>
+            <url>gs://cg-02-6e2c8.appspot.com/Thumbnails/Image1.png</url>
+        </img>
+        <price>
+            <value>1200</value>
+            <currency>diamonds</currency>
+        </price>
+        <sale>
+            <date>
+                <start>19-10-2022</start>
+                <end>20-10-2022</end>
+            </date>
+            <discount>15</discount>
+            <redeemable>1</redeemable>
+        </sale>
+    </asset>
+    <asset>
+        <id>1</id>
+        <name>Miner's Boot</name>
+        <img>
+            <url>gs://cg-02-6e2c8.appspot.com/Thumbnails/Image2.png</url>
+        </img>
+        <price>
+            <value>1500</value>
+            <currency>diamonds</currency>
+        </price>
+    </asset>
+</assets>
