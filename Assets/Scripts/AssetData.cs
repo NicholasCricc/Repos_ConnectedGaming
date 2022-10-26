@@ -6,7 +6,7 @@ public class AssetData
 {
     public enum CURRENCY
     {
-        Gold, Diamonds
+        Default, Gold, Diamonds
     }
     private string _id;
     private string _name;
@@ -60,5 +60,11 @@ public class AssetData
     {
         get => _discount;
         set => _discount = value;
+    }
+    
+    public override string ToString()
+    {
+        return ($"Asset with id:{ID} name:{Name} thumbnail url:{ThumbnailUrl} " +
+                $"price:{Price} currency:{Currency.ToString()} discount:{Discount}");
     }
 }
